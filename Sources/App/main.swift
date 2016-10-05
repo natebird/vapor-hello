@@ -1,6 +1,11 @@
 import Vapor
+import VaporPostgreSQL
 
-let drop = Droplet()
+// let postgresql = VaporPostgreSQL.Provider(user: "postgres")
+let drop = Droplet(
+    preparations: [Post.self],
+    providers: [VaporPostgreSQL.Provider.self]
+)
 
 drop.get("hello") { request in
     return "Hello, world!"
